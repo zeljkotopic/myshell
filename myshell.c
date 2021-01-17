@@ -86,7 +86,7 @@ int path( char **args)
 
 int clr(char **args)
 {
-	system("clear--");
+	system("clear");
 	return 1;
 }	
 
