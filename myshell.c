@@ -13,6 +13,9 @@
 int lsh_cd(char **args);
 int lsh_help(char **args);
 int lsh_exit(char **args);
+int path(char **args);
+int clr(char **args);
+
 
 /*
   List of builtin commands, followed by their corresponding functions.
@@ -20,13 +23,17 @@ int lsh_exit(char **args);
 char *builtin_str[] = {
   "cd",
   "help",
-  "exit"
+  "exit",
+  "path",
+  "clr"
 };
 
 int (*builtin_func[]) (char **) = {
   &lsh_cd,
   &lsh_help,
-  &lsh_exit
+  &lsh_exit,
+  &path,
+  &clr
 };
 
 int lsh_num_builtins() {
@@ -67,6 +74,23 @@ int lsh_exit(char **args)
 {
   return 0;
 }
+
+
+int path( char **args)
+{
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    printf("Current working dir: %s\n", cwd);
+    return 1;
+}
+
+int clr(char **args)
+{
+		system("clear--");
+		return 1;
+}	
+
+
 
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
